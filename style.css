@@ -58,7 +58,9 @@ body {
   padding: 20px;
   margin: 10px;
   display: flex;
-  justify-content: center;
+
+  justify-content: start;
+  gap: 10px;
 }
 .search_box > input {
   width: 300px;

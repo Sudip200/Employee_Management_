@@ -14,6 +14,7 @@ const salaryInput = document.getElementById("salary");
 const addressInput = document.getElementById("address");
 const addEmployeeBtn = document.querySelector(".add_btn_emclass");
 const listAllBtn = document.getElementById("clear_btn");
+const selectDesignation = document.querySelector(".select_desig");
 
 let name;
 let email;
@@ -26,32 +27,32 @@ let employees = [
     id: 1,
     name: "John Doe",
     email: "john.doe@example.com",
-    designation: "Software Engineer",
-    salary: "50000",
+    designation: "Developer",
+    salary: 80000,
     address: "123 Main St",
   },
   {
     id: 2,
     name: "Jane Smith",
     email: "jane.smith@example.com",
-    designation: "Project Manager",
-    salary: "60000",
+    designation: "tester",
+    salary: 60000,
     address: "456 Elm St",
   },
   {
     id: 3,
     name: "Alice Johnson",
     email: "alice.johnson@example.com",
-    designation: "UX Designer",
-    salary: "55000",
+    designation: "Manager",
+    salary: 70000,
     address: "789 Oak St",
   },
   {
     id: 4,
     name: "Bob Brown",
     email: "bob.brown@example.com",
-    designation: "DevOps Engineer",
-    salary: "58000",
+    designation: "hr",
+    salary: 50000,
     address: "321 Pine St",
   },
 ];
@@ -91,33 +92,33 @@ function listAll(employeeArray) {
         </tr>
     </thead>
     <tbody>`;
-  employeeArray.forEach((employee) => {
+  employeeArray.forEach(({ id, name, designation, email, salary, address }) => {
     containerHTML += `
         <tr>
-            <td>${employee.name}</td>
-            <td>${employee.designation}</td>
-            <td>${employee.email}</td>
-            <td>${employee.salary}</td>
+            <td>${name}</td>
+            <td>${designation}</td>
+            <td>${email}</td>
+            <td>${salary}</td>
             <td>
-                <button class="option_btn" onclick="viewDetailModal(${employee.id})">
+                <button class="option_btn" onclick="viewDetailModal(${id})">
                     <i class="fas fa-eye"></i> View
                 </button>
                 <button class="option_btn">
                     <i class="fas fa-edit"></i> Edit
                 </button>
-                <button class="option_btn" onclick="deleteEmployee(${employee.id})">
+                <button class="option_btn" onclick="deleteEmployee(${id})">
                     <i class="fas fa-trash"></i> Delete
                 </button>
             </td>
         </tr>
-        <div class="view_detail_modal" id="${employee.id}" style="display:none;">
+        <div class="view_detail_modal" id="${id}" style="display:none;">
             
-                <span class="close_btn" onclick="closeModal(${employee.id})">&times;</span>
-                <h3>${employee.name}</h3>
-                <p>${employee.designation}</p>
-                <p>${employee.email}</p>
-                <p>${employee.salary}</p>
-                <p>${employee.address}</p>
+                <span class="close_btn" onclick="closeModal(${id})">&times;</span>
+                <h3>${name}</h3>
+                <p>${designation}</p>
+                <p>${email}</p>
+                <p>${salary}</p>
+                <p>${address}</p>
             
         </div>
     `;
@@ -165,7 +166,7 @@ function deleteEmployee(id) {
 }
 function searchEmployee() {
   if (searchInput.value === "") {
-    errorMessage.innerHTML = "Please enter a valid search query";
+    errorMessage.innerHTML = `Please enter a valid id`;
     listAll(employees);
     return;
   }
@@ -183,7 +184,24 @@ function searchEmployee() {
     listAll(result);
   }
 }
-
+function selectDesignationChange() {
+  if (selectDesignation.value === "all") {
+    listAll(employees);
+    return;
+  }
+  let result = employees.filter((employee) =>
+    employee.designation.toLocaleLowerCase().includes(selectDesignation.value)
+  );
+  listAll(result);
+}
+function increaseSalaryBy10() {
+  let result = employees.map((employee) => {
+    employee.salary = Math.floor(employee.salary * 1.1);
+    return employee;
+  });
+  listAll(result);
+}
+selectDesignation.addEventListener("change", selectDesignationChange);
 addEmployeeBtn.addEventListener("click", addEmployee);
 // keyboard event on enter key
 searchInput.addEventListener("keyup", (e) => {

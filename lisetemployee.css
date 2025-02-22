@@ -95,3 +95,43 @@
 .close_btn:hover {
   color: #b8860b;
 }
+
+.filter_section {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+
+  border: 1px solid #ddd;
+  width: 200px;
+  background-color: #ffd700;
+}
+option {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 200px;
+  color: #f7db3e;
+}
+.increase_salary > button {
+  background-color: #ffd700;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+.error_msg {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+}
