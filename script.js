@@ -1,6 +1,7 @@
 //getting all html elements
 const rightPanel = document.querySelector('.right_panel');
 const leftPanel = document.querySelector('.left-panel');
+const addEmployeeContainer = document.querySelector('.add_new_employee');
 
 
 // all employees
@@ -43,6 +44,11 @@ let employees = [
 
 ]
 
+
+
+
+
+
 function listAll(){
     console.log('listing all employees');
     rightPanel.innerHTML = '';
@@ -74,6 +80,9 @@ containerHTML += `</div>`;
 
 rightPanel.innerHTML = containerHTML;
 
+}
+function addNew(){
+    addEmployeeContainer.style.display = 'block';
 }
 
 

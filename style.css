@@ -60,6 +60,7 @@ for adding employee
  /* General Styles */
 
 .add_new_employee {
+    display: none;
     width: 70%;
     margin: 50px auto;
     background-color: #fff;
