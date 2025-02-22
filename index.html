@@ -1,68 +1,78 @@
 <!DOCTYPE html>
 <html>
- <head>
+  <head>
     <title>Employe Management System</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="addemploye.css" />
+    <link rel="stylesheet" type="text/css" href="lisetemployee.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="script.js" defer></script>
- </head>
- <body>
+  </head>
+  <body>
     <div class="left_panel">
-        <div class="profile_pic">
-            <img src="https://promact.hiringbull.com/Home/GetImage?handler=CompanyLogo&companyId=305" alt="profile_pic">
-        </div>
+      <div class="profile_pic">
+        <img
+          src="https://promact.hiringbull.com/Home/GetImage?handler=CompanyLogo&companyId=305"
+          alt="profile_pic"
+        />
+      </div>
 
-        <div class="options">
-          <div class="option list_all" onclick="listAll()">
-             <div>List All</div>
-          </div>
-            <div class="option add_new" onclick="addNew()">
-                 <div>Add New</div>
-            </div>
-            <div class="option search">
-                 <div>Search</div>
-            </div>
+      <div class="options">
+        <div class="option list_all" onclick="listAll()">
+          <div><i class="fas fa-list"></i> List All</div>
         </div>
-    </div>
-    <div class="right_panel" >
-     
-        <div class="add_new_employee">
-            <div class="add_new_employee_heading">
-                <div>Add New Employee</div>
-            </div>
-            <div class="add_new_employee_form">
-              <form id="add_new_employee_form">
-                <div class="form_field">
-                    <div class="form_field_label">Name</div>
-                    <input type="text" name="name" id="name" required>
-                    <div class="form_field_label">Email</div>
-                    <input type="email" name = "email" id="email" required>
-                    <div class="form_field
-                    _label">Phone</div>
-                    <input type="text" name="phone" id="phone" required>
-                    <div class="form_field
-                    _label">Designation</div>
-                    <input type="text" name="designation" id="designation" required>
-                    <div class="form_field
-                    _label">Salary</div>
-                    <input type="text" name="salary" id="salary" required>
-                    <div class="form_field
-                    _label">Address</div>
-                    <input type="text" name="address" id="address" required>
-                    <div class="form_field
-                    _label">City</div>
-                    <input type="text" name="city" id="city" required>
-                    <div class="form_field
-                    _label">State</div>
-                    <input type="text" name="state" id="state" required>
-                </div>
-                <div class="form_field
-                    _label">
-                    <button type="submit">Add</button>
-                    <button type="reset">Reset</button>
-                </div>
-            </form>
+        <div class="option add_new" onclick="addNew()">
+          <div><i class="fas fa-plus"></i> Add New</div>
         </div>
+      </div>
     </div>
-    </div>  
-
- </body>
+    <div class="right_panel">
+      <div class="list_employee">
+        <div class="search_box">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search Employee"
+          />
+          <button onclick="searchEmployee()">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="error_msg"></div>
+        </div>
+        <div class="list_container"></div>
+      </div>
+      <div class="add_new_employee">
+        <div class="add_new_employee_heading">
+          <div>Add New Employee</div>
+        </div>
+        <div class="add_new_employee_form">
+          <form id="add_new_employee_form">
+            <div class="form_field">
+              <div class="form_field_label">Name</div>
+              <input type="text" name="name" id="ename" required />
+              <div class="form_field_label">Email</div>
+              <input type="email" name="email" id="email" required />
+              <div class="form_field _label">Designation</div>
+              <input type="text" name="designation" id="designation" required />
+              <div class="form_field _label">Salary</div>
+              <input type="text" name="salary" id="salary" required />
+              <div class="form_field _label">Address</div>
+              <input type="text" name="address" id="address" required />
+            </div>
+            <div class="form_field _label">
+              <button type="submit" class="add_btn_emclass">Add</button>
+              <button type="reset" class="clear_btn_emclass">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

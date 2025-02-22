@@ -1,88 +1,193 @@
-//getting all html elements
-const rightPanel = document.querySelector('.right_panel');
-const leftPanel = document.querySelector('.left-panel');
-const addEmployeeContainer = document.querySelector('.add_new_employee');
+const rightPanel = document.querySelector(".right_panel");
+const leftPanel = document.querySelector(".left-panel");
+//for list view screen  ------------------
+const listPageContainer = document.querySelector(".list_employee");
+const listContainer = document.querySelector(".list_container");
+const searchInput = document.getElementById("search");
+const errorMessage = document.querySelector(".error_msg");
+// for add employee screen ----------------
+const addEmployeeContainer = document.querySelector(".add_new_employee");
+const nameInput = document.getElementById("ename");
+const emailInput = document.getElementById("email");
+const designationInput = document.getElementById("designation");
+const salaryInput = document.getElementById("salary");
+const addressInput = document.getElementById("address");
+const addEmployeeBtn = document.querySelector(".add_btn_emclass");
+const listAllBtn = document.getElementById("clear_btn");
 
-
-// all employees
+let name;
+let email;
+let designation;
+let salary;
+let address;
+let query;
 let employees = [
-    {
-        id: 1,
-        name: 'John Doe',
-        department: 'IT',
-        email: 'dh',
-        salary: 1000
-    },
-    {
-        id: 2,
-        name: 'Jane Doe',
-        department: 'HR',
-        email: 'jh',
-        salary: 2000
-    },
-    {
-        id: 3,
-        name: 'Jim Doe',
-        department: 'Finance',
-        email: 'jh',
-        salary: 3000
-    },
-    {
-        id: 4,
-        name: 'Jill Doe',
-        department: 'IT',
-        email: 'jh',
-        salary: 4000
-    },
-    {
-        id: 5,
-        name: 'Jack Doe',
-        department: 'Finance',
-        email: 'jh',
-        salary: 5000
-    }
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john.doe@example.com",
+    designation: "Software Engineer",
+    salary: "50000",
+    address: "123 Main St",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    email: "jane.smith@example.com",
+    designation: "Project Manager",
+    salary: "60000",
+    address: "456 Elm St",
+  },
+  {
+    id: 3,
+    name: "Alice Johnson",
+    email: "alice.johnson@example.com",
+    designation: "UX Designer",
+    salary: "55000",
+    address: "789 Oak St",
+  },
+  {
+    id: 4,
+    name: "Bob Brown",
+    email: "bob.brown@example.com",
+    designation: "DevOps Engineer",
+    salary: "58000",
+    address: "321 Pine St",
+  },
+];
+listAll(employees);
+function Employee(id, name, email, designation, salary, address) {
+  this.id = id;
+  this.name = name;
+  this.email = email;
+  this.designation = designation;
+  this.salary = salary;
+  this.address = address;
+  this.employeeArray = [];
+}
 
-]
+function closeModal(id) {
+  //  document.body.style.backgroundColor = "rgba(0, 0, 0, 0)";
+  let modal = document.getElementById(id);
+  modal.style.display = "none";
+}
+function viewDetailModal(id) {
+  let modal = document.getElementById(id);
+  modal.style.display = "block";
+  // document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+}
 
-
-
-
-
-
-function listAll(){
-    console.log('listing all employees');
-    rightPanel.innerHTML = '';
-
-let containerHTML = `<div class='container' style="display: flex; flex-direction:column;flex-wrap: wrap; justify-content: space-between; overflow-y: auto;">
-<h2>All Employees</h2>
-`;
-
-employees.forEach(employee => {
+function listAll(employeeArray) {
+  makeAllNoneExcept(listPageContainer);
+  let containerHTML;
+  containerHTML = `<table class="employee_table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>`;
+  employeeArray.forEach((employee) => {
     containerHTML += `
-    <div class="employee" style="
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
-    border-radius: 10px;
-    margin: 10px;
-    background-color: white;
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    ">
-        <h3>${employee.name}</h3>
-        <p>${employee.department}</p>
-        <p>${employee.email}</p>
-        <p>${employee.salary}</p>
-    </div>
+        <tr>
+            <td>${employee.name}</td>
+            <td>${employee.designation}</td>
+            <td>${employee.email}</td>
+            <td>${employee.salary}</td>
+            <td>
+                <button class="option_btn" onclick="viewDetailModal(${employee.id})">
+                    <i class="fas fa-eye"></i> View
+                </button>
+                <button class="option_btn">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="option_btn" onclick="deleteEmployee(${employee.id})">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </td>
+        </tr>
+        <div class="view_detail_modal" id="${employee.id}" style="display:none;">
+            
+                <span class="close_btn" onclick="closeModal(${employee.id})">&times;</span>
+                <h3>${employee.name}</h3>
+                <p>${employee.designation}</p>
+                <p>${employee.email}</p>
+                <p>${employee.salary}</p>
+                <p>${employee.address}</p>
+            
+        </div>
     `;
+  });
+  containerHTML += `</tbody></table>`;
+  listContainer.innerHTML = containerHTML;
+  listPageContainer.style.display = "block";
+}
+
+function addNew() {
+  makeAllNoneExcept(addEmployeeContainer);
+  addEmployeeContainer.style.display = "block";
+}
+function makeAllNoneExcept(element) {
+  listPageContainer.style.display = "none";
+  addEmployeeContainer.style.display = "none";
+  element.style.display = "block";
+}
+
+function addEmployee(e) {
+  console.log("event", e);
+  e.preventDefault();
+  let id = employees.length + 1;
+  let newEmployee = new Employee(
+    id,
+    nameInput.value,
+    emailInput.value,
+    designationInput.value,
+    salaryInput.value,
+    addressInput.value
+  );
+  employees.push(newEmployee);
+  listAll(employees);
+}
+function clearForm() {
+  nameInput.value = "";
+  emailInput.value = "";
+  designationInput.value = "";
+  salaryInput.value = "";
+  addressInput.value = "";
+}
+function deleteEmployee(id) {
+  employees = employees.filter((employee) => employee.id !== id);
+  listAll(employees);
+}
+function searchEmployee() {
+  if (searchInput.value === "") {
+    errorMessage.innerHTML = "Please enter a valid search query";
+    listAll(employees);
+    return;
+  }
+  query = searchInput.value;
+  let result = employees.filter(
+    (employee) => employee.id === parseFloat(query)
+  );
+
+  if (result.length === 0) {
+    errorMessage.innerHTML = "No result found";
+    listAll(employees);
+    return;
+  } else {
+    errorMessage.innerHTML = "";
+    listAll(result);
+  }
+}
+
+addEmployeeBtn.addEventListener("click", addEmployee);
+// keyboard event on enter key
+searchInput.addEventListener("keyup", (e) => {
+  if (e.keyCode === 13) {
+    searchEmployee();
+  }
 });
-containerHTML += `</div>`;
-
-rightPanel.innerHTML = containerHTML;
-
-}
-function addNew(){
-    addEmployeeContainer.style.display = 'block';
-}
-
-

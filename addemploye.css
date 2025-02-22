@@ -1,0 +1,67 @@
+/* Scope styles within the .add_new_employee container */
+.add_new_employee {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fffbe0; /* light yellow */
+  border: 2px solid #ffd700; /* gold border */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.add_new_employee_heading div {
+  font-size: 24px;
+  font-weight: bold;
+  color: #d4a200; /* deep gold */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.add_new_employee_form .form_field {
+  margin-bottom: 15px;
+}
+
+.add_new_employee_form .form_field_label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.add_new_employee_form input[type="text"],
+.add_new_employee_form input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* Form field grouping for buttons */
+.add_new_employee_form .form_field._label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Gold themed buttons */
+.add_new_employee_form .add_btn_emclass,
+.add_new_employee_form .clear_btn_emclass {
+  background-color: #ffd700; /* Gold background */
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add_new_employee_form .add_btn_emclass:hover,
+.add_new_employee_form .clear_btn_emclass:hover {
+  background-color: #d4a200; /* darker gold on hover */
+  color: #fff;
+}
