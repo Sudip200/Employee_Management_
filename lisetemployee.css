@@ -130,7 +130,9 @@ option {
   padding: 10px 20px;
   font-size: 16px;
 }
-.error_msg {
+.error_msg,
+.error_msg_add,
+.error_msg_edit {
   color: red;
   font-size: 16px;
   margin-top: 10px;

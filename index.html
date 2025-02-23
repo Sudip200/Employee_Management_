@@ -30,6 +30,9 @@
         <div class="option add_new" onclick="addNew()">
           <div><i class="fas fa-plus"></i> Add New</div>
         </div>
+        <div class="option edit_employee" onclick="viewEditEmployee()">
+          <div><i class="fas fa-edit"></i> Edit Employee</div>
+        </div>
       </div>
     </div>
     <div class="right_panel">
@@ -63,11 +66,47 @@
         </div>
         <div class="list_container"></div>
       </div>
+      <div class="edit_new_employee">
+        <div class="add_new_employee_heading">
+          <div>Edit Employee</div>
+        </div>
+        <div class="add_new_employee_form">
+          <div class="error_msg_edit"></div>
+
+          <form id="add_new_employee_form">
+            <div class="form_field">
+              <div class="form_field_label">ID</div>
+              <input type="number" name="id" id="eid" required />
+
+              <div class="form_field_label">Name</div>
+              <input type="text" name="name" id="edname" required />
+              <div class="form_field_label">Email</div>
+              <input type="email" name="email" id="edmail" required />
+              <div class="form_field _label">Designation</div>
+              <input
+                type="text"
+                name="designation"
+                id="eddesignation"
+                required
+              />
+              <div class="form_field _label">Salary</div>
+              <input type="text" name="salary" id="edsalary" required />
+              <div class="form_field _label">Address</div>
+              <input type="text" name="address" id="edaddress" required />
+            </div>
+            <div class="form_field _label">
+              <button type="submit" class="add_btn_emclass__edit">Edit</button>
+              <button type="reset" class="clear_btn_emclass">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
       <div class="add_new_employee">
         <div class="add_new_employee_heading">
           <div>Add New Employee</div>
         </div>
         <div class="add_new_employee_form">
+          <div class="error_msg_add"></div>
           <form id="add_new_employee_form">
             <div class="form_field">
               <div class="form_field_label">Name</div>
