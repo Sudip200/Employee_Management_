@@ -33,7 +33,7 @@
 }
 
 .employee_table tr:hover {
-  background-color: #fff3a6; /* Slightly darker yellow on hover */
+  background-color: #fff3a6;
   transition: 0.3s ease-in-out;
 }
 
