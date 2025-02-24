@@ -262,7 +262,7 @@ const addEmployee = (e) => {
     nameInput.value,
     emailInput.value,
     addDesignation.value,
-    parseFloat(salaryInput.value),
+    parseFloat(salaryInput.value).toFixed(2),
     addressInput.value
   );
   // add new employee to the array
@@ -353,7 +353,7 @@ const editEmployee = (e) => {
         name: ename.value,
         email: eemail.value,
         designation: editDesignation.value,
-        salary: parseFloat(esalary.value),
+        salary: parseFloat(esalary.value).toFixed(2),
         address: eaddress.value,
       };
     } else {
