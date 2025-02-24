@@ -16,12 +16,14 @@ const addEmployeeBtn = document.querySelector(".add_btn_emclass");
 const listAllBtn = document.getElementById("clear_btn");
 const selectDesignation = document.querySelector(".select_desig");
 const error_msg = document.querySelector(".error_msg_add");
+const addDesignation = document.querySelector(".add_desig");
 // for edit employee screen ----------------
 const editEmployeeContainer = document.querySelector(".edit_new_employee");
 const eid = document.getElementById("eid");
 const ename = document.getElementById("edname");
 const eemail = document.getElementById("edmail");
 const edesignation = document.getElementById("eddesignation");
+const editDesignation = document.querySelector(".edit_desig");
 const esalary = document.getElementById("edsalary");
 const eaddress = document.getElementById("edaddress");
 const error_msg_edit = document.querySelector(".error_msg_edit");
@@ -164,6 +166,9 @@ searchInput.addEventListener("keyup", (e) => {
 selectDesignation.addEventListener("change", selectDesignationChange);
 // main function to list all employees dynamically in a table
 function listAll(employeeArray) {
+    document.querySelector(".list_all").style.backgroundColor = '#ffd700'
+      document.querySelector(".add_new").style.backgroundColor = 'white'
+      document.querySelector(".edit_employee").style.backgroundColor = 'white'
   if (!employeeArray) {
     employeeArray = employees;
   }
@@ -172,6 +177,7 @@ function listAll(employeeArray) {
   containerHTML = `<table class="employee_table">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Name</th>
             <th>Designation</th>
             <th>Email</th>
@@ -183,6 +189,7 @@ function listAll(employeeArray) {
   employeeArray.forEach(({ id, name, designation, email, salary, address }) => {
     containerHTML += `
         <tr>
+            <td>${id}</td>
             <td>${name}</td>
             <td>${designation}</td>
             <td>${email}</td>
@@ -219,6 +226,9 @@ function listAll(employeeArray) {
 // FOR ADD EMPLOYEE SCREEN
 // function to change view to add employee screen
 function addNew() {
+  document.querySelector(".list_all").style.backgroundColor = 'white'
+  document.querySelector(".add_new").style.backgroundColor = '#ffd700'
+    document.querySelector(".edit_employee").style.backgroundColor = 'white'
   makeAllNoneExcept(addEmployeeContainer);
   addEmployeeContainer.style.display = "block";
 }
@@ -232,7 +242,7 @@ const addEmployee = (e) => {
   if (
     nameInput.value === "" ||
     emailInput.value === "" ||
-    designationInput.value === "" ||
+    addDesignation.value === "" ||
     salaryInput.value === "" ||
     addressInput.value === ""
   ) {
@@ -251,7 +261,7 @@ const addEmployee = (e) => {
     id,
     nameInput.value,
     emailInput.value,
-    designationInput.value,
+    addDesignation.value,
     parseFloat(salaryInput.value),
     addressInput.value
   );
@@ -277,6 +287,9 @@ addEmployeeBtn.addEventListener("click", addEmployee);
 // FOR EDIT EMPLOYEE SCREEN
 // function to change view to edit employee screen
 function viewEditEmployee(id) {
+    document.querySelector(".list_all").style.backgroundColor = 'white'
+    document.querySelector(".add_new").style.backgroundColor = 'white'
+    document.querySelector(".edit_employee").style.backgroundColor = '#ffd700'
   if (id) {
     eid.value = id;
     getResultValueById(id);
@@ -294,7 +307,7 @@ function getResultValueById() {
   }
   ename.value = result[0].name;
   eemail.value = result[0].email;
-  edesignation.value = result[0].designation;
+  editDesignation.value = result[0].designation;
   esalary.value = result[0].salary;
   eaddress.value = result[0].address;
 }
@@ -318,7 +331,7 @@ const editEmployee = (e) => {
   if (
     ename.value === "" ||
     eemail.value === "" ||
-    edesignation.value === "" ||
+      editDesignation.value === "" ||
     esalary.value === "" ||
     eaddress.value === ""
   ) {
@@ -339,7 +352,7 @@ const editEmployee = (e) => {
         ...employee,
         name: ename.value,
         email: eemail.value,
-        designation: edesignation.value,
+        designation: editDesignation.value,
         salary: parseFloat(esalary.value),
         address: eaddress.value,
       };

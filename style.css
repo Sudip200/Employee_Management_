@@ -45,15 +45,19 @@ body {
 }
 .options > div {
   margin: 10px;
-  background-color: #ffd700;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
   padding: 10px;
+  border-radius: 20px;
   cursor: pointer;
   transition: 0.3s;
 }
+.option > div{
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+
+}
+
 .options > div:hover {
   background-color: #ffa600;
   color: #333;
@@ -63,7 +67,7 @@ body {
   padding: 20px;
   margin: 10px;
   display: flex;
-
+  
   justify-content: start;
   gap: 10px;
 }
@@ -71,7 +75,7 @@ body {
   width: 300px;
   padding: 10px;
   border: 2px solid #ddd;
-  border-radius: 5px;
+  border-radius: 20px;
   font-size: 16px;
   box-sizing: border-box;
 }
@@ -81,6 +85,7 @@ body {
   cursor: pointer;
   outline: none;
   margin: 0 5px;
+  
   font-size: 14px;
   margin: 0 5px;
   transition: transform 0.2s ease-in-out;

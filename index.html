@@ -25,13 +25,13 @@
 
       <div class="options">
         <div class="option list_all" onclick="listAll()">
-          <div><i class="fas fa-list"></i> List All</div>
+          <div><i class="fas fa-list"></i> <div>List All</div></div>
         </div>
         <div class="option add_new" onclick="addNew()">
-          <div><i class="fas fa-plus"></i> Add New</div>
+          <div><i class="fas fa-plus"></i> <div>Add New</div></div>
         </div>
         <div class="option edit_employee" onclick="viewEditEmployee()">
-          <div><i class="fas fa-edit"></i> Edit Employee</div>
+          <div><i class="fas fa-edit"></i> <div>Edit Employee</div></div>
         </div>
       </div>
     </div>
@@ -82,15 +82,21 @@
               <input type="text" name="name" id="edname" required />
               <div class="form_field_label">Email</div>
               <input type="email" name="email" id="edmail" required />
-              <div class="form_field _label">Designation</div>
-              <input
-                type="text"
-                name="designation"
-                id="eddesignation"
-                required
-              />
+              <div class="form_field
+              _label">Designation</div>
+              <select name="select_desig" class="edit_desig">
+                <option value=''>Select Designation</option>
+                <option value="developer">Developer</option>
+                <option value="designer">Designer</option>
+                <option value="manager">Manager</option>
+                <option value="tester">Tester</option>
+                <option value="hr">HR</option>
+              </select>
               <div class="form_field _label">Salary</div>
-              <input type="text" name="salary" id="edsalary" required />
+              <input type="number" name="salary" id="edsalary" 
+              onkeypress="return event.charCode >= 48" min="1" 
+              required 
+               />
               <div class="form_field _label">Address</div>
               <input type="text" name="address" id="edaddress" required />
             </div>
@@ -114,9 +120,20 @@
               <div class="form_field_label">Email</div>
               <input type="email" name="email" id="email" required />
               <div class="form_field _label">Designation</div>
-              <input type="text" name="designation" id="designation" required />
+              <select name="add_desig" class="add_desig">
+                <option value=''>Select Designation</option>
+                <option value="developer">Developer</option>
+                <option value="designer">Designer</option>
+                <option value="manager">Manager</option>
+                <option value="tester">Tester</option>
+                <option value="hr">HR</option>
+              </select>
               <div class="form_field _label">Salary</div>
-              <input type="text" name="salary" id="salary" required />
+             
+              <input type="number" name="salary" id="salary" 
+              onkeypress="return event.charCode >= 48" min="1" 
+              required 
+               />
               <div class="form_field _label">Address</div>
               <input type="text" name="address" id="address" required />
             </div>
